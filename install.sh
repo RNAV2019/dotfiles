@@ -2,7 +2,7 @@
 
 # Define source and target directories
 SOURCE_DIR="config"
-TARGET_DIR="$HOME/.config"
+TARGET_DIR="$HOME/dotfiles/config"
 
 # Ensure the target directory exists
 mkdir -p "$TARGET_DIR"
@@ -24,6 +24,15 @@ if ! grep -Fxq "$LINE_TO_ADD" "$HOME/.zshrc"; then
   echo "Added hx config alias to ~/.zshrc."
 else
   echo "hx config already present in ~/.zshrc."
+fi
+
+# Add a line to ghostty config to use new config file
+GHOSTTY_LINE_TO_ADD="config-file = /Users/$(whoami)/dotfiles/config/ghostty/config"
+if ! grep -Fxq "$GHOSTTY_LINE_TO_ADD" "$HOME/.config/ghostty/config"; then
+  echo "$GHOSTTY_LINE_TO_ADD" >> "$HOME/.config/ghostty/config"
+  echo "Added ghostty config to global config."
+else
+  echo "Ghostty config already present in global config"
 fi
 
 # Confirm installation completion
