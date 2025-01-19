@@ -1,0 +1,8 @@
+inherits = "onedark"
+"ui.background" = {}
+"ui.bufferline" = {}
+"ui.statusline" = {}
+"ui.bufferline.background" = {}
+# "ui.bufferline.active" = { bg = "#E06C75"}
+"ui.bufferline.active" = { bg = "#848884"}
+"ui.background.separator" = {}

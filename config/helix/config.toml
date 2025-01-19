@@ -1,0 +1,19 @@
+# This is my config file
+theme = "onedarkpro"
+
+[editor]
+bufferline = "always"
+auto-format = true
+line-number = "relative"
+mouse = false
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[keys.normal]
+C-w = ":buffer-close"
+
+[keys.insert]
+C-w = [":buffer-close", "normal_mode"]
+C-space = "completion"

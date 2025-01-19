@@ -1,0 +1,18 @@
+theme = "OneHalfDark"
+font-family = "MesloLGS NF"
+font-size = 18
+
+working-directory = "/Users/ryannav/Desktop/dev"
+window-inherit-working-directory = false
+window-width = 114
+window-height = 30
+
+background = #000000
+background-opacity = 0.80
+background-blur-radius = 20
+
+macos-titlebar-style = hidden
+window-decoration = true
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
