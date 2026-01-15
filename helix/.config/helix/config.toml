@@ -1,0 +1,40 @@
+# This is my config file
+theme = "base16_transparent"
+
+[editor.lsp]
+display-color-swatches = true
+
+[editor]
+bufferline = "always"
+auto-format = true
+line-number = "relative"
+mouse = false
+preview-completion-insert = false
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "position", "version-control", "file-type"]
+
+[keys.normal]
+C-w = ":buffer-close"
+y = ":clipboard-yank"
+p = ":clipboard-paste-before"
+
+[keys.select]
+y = ":clipboard-yank"
+p = ":clipboard-paste-before"
+
+[keys.insert]
+C-w = [":buffer-close", "normal_mode"]
+C-space = "completion"

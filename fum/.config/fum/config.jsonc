@@ -1,0 +1,16 @@
+{
+  "use_active_player": true,
+  "fps": 60,
+  "keybinds": {
+    "esc;q": "quit()",
+    "h": "prev()",
+    "l": "next()",
+    " ": "play_pause()"
+  },
+  "width": 20,
+  "height": 20,
+  "border": false,
+  "padding": [0, 0],
+  "bg": "reset",
+  "fg": "reset"
+}  

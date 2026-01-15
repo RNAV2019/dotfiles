@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Cycles through the background images available using swww
+
+THEME_NAME=$(cat "$HOME/.config/omarchy/current/theme.name" 2>/dev/null)
+THEME_BACKGROUNDS_PATH="$HOME/.config/omarchy/current/theme/backgrounds/"
+USER_BACKGROUNDS_PATH="$HOME/.config/omarchy/backgrounds/$THEME_NAME/"
+CURRENT_BACKGROUND_LINK="$HOME/.config/omarchy/current/background"
+
+# 1. Ensure swww-daemon is running before sending commands
+if ! pgrep -x "swww-daemon" > /dev/null; then
+    swww-daemon &
+    sleep 0.1 # Short delay to ensure daemon is ready
+fi
+
+mapfile -d '' -t BACKGROUNDS < <(find -L "$USER_BACKGROUNDS_PATH" "$THEME_BACKGROUNDS_PATH" -maxdepth 1 -type f -print0 2>/dev/null | sort -z)
+TOTAL=${#BACKGROUNDS[@]}
+
+if [[ $TOTAL -eq 0 ]]; then
+    notify-send "No background was found for theme" -t 2000
+    # Set to a solid black color if no images are found
+    swww clear 000000
+else
+    # Get current background from symlink
+    if [[ -L "$CURRENT_BACKGROUND_LINK" ]]; then
+        CURRENT_BACKGROUND=$(readlink "$CURRENT_BACKGROUND_LINK")
+    else
+        # Default to empty if no symlink exists
+        CURRENT_BACKGROUND=""
+    fi
+
+    # Find current background index
+    INDEX=-1
+    for i in "${!BACKGROUNDS[@]}"; do
+        if [[ "${BACKGROUNDS[$i]}" == "$CURRENT_BACKGROUND" ]]; then
+            INDEX=$i
+            break
+        fi
+    done
+
+    # Get next background (wrap around)
+    if [[ $INDEX -eq -1 ]]; then
+        # Use the first background when no match was found
+        NEW_BACKGROUND="${BACKGROUNDS[0]}"
+    else
+        NEXT_INDEX=$(((INDEX + 1) % TOTAL))
+        NEW_BACKGROUND="${BACKGROUNDS[$NEXT_INDEX]}"
+    fi
+
+    # Update the symlink for persistence
+    ln -nsf "$NEW_BACKGROUND" "$CURRENT_BACKGROUND_LINK"
+
+    # 2. Use swww to update the image with a transition
+    # You can change --transition-type to: center, top, right, wipe, outer, etc.
+    swww img "$NEW_BACKGROUND" \
+        --transition-type outer \
+        --transition-pos center \
+        --transition-duration 1.5 \
+        --transition-step 90 \
+        --transition-fps 60
+
+    # Update matugen
+    matugen image "$NEW_BACKGROUND"
+fi
