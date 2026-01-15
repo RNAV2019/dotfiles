@@ -4,8 +4,8 @@ A curated collection of configuration files that build upon the base Omarchy. Ma
 
 <details>
 <summary>Preview</summary>
-![image](./preview1.png)
-![image](./preview2.png)
+<img src="./preview1.png">
+<img src="./preview2.png">
 </details>
 
 ⚡ Quick Start
