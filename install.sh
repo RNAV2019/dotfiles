@@ -8,14 +8,14 @@ fi
 
 # Configuration
 DOTFILES_DIR=$(pwd)
-PACKAGES=("bash" "fum" "ghostty" "helix" "hypr" "matugen" "music" "omarchy" "swayosd" "swww" "waybar")
+PACKAGES=("bash" "fum" "ghostty" "helix" "hypr" "matugen" "music" "omarchy" "swayosd" "swww" "waybar" "branding")
 
 # Welcome Screen
 clear
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
-	"📦 DOTFILES INSTALLER" "Managed with GNU Stow"
+	"🜘 Hyprsalt Installer (Ryan's Dotfiles)" "Managed with GNU Stow"
 
 # Ask for installation type
 CHOICE=$(gum choose "Install All Packages" "Select Specific Packages" "Exit")
