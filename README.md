@@ -1,4 +1,5 @@
 ![logo](hyprsalt.png)
+
 ✦ Ryan's Dotfiles - Hyprsalt
 
 A curated collection of configuration files that build upon the base Omarchy. Managed with GNU Stow.
